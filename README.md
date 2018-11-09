@@ -62,14 +62,14 @@ Passing an object as a second value will use that object as the result.
 const coords = { x: 0, y: 0 };
 const style = {};
 const tween = new TWEEN.Tween(coords)
-	.to({ x: 300, y: 200 }, 1000)
-	.onUpdate(function() {
-		const styled = toStyle(coords, style);
-		console.log(style === style);
-		// > true
-		// do what you'd like with the style.transform 
-	})
-	.start();
+  .to({ x: 300, y: 200 }, 1000)
+  .onUpdate(function() {
+    const styled = toStyle(coords, style);
+    console.log(style === style);
+    // > true
+    // do what you'd like with the style.transform 
+  })
+  .start();
 ```
 
 `to-style` believes in staying out of your way, not doing too much and having smart defaults. 
