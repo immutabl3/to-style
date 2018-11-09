@@ -1,0 +1,1 @@
+export default Object.keys(document.createElement('div').style);
