@@ -12,7 +12,7 @@ test('function & creation', assert => {
 
 test('calling', assert => {
 	assert.throws(() => toStyle(), `not passing an object throws an error`);
-	assert.doesNotThrow(() => toStyle({}), `can call toStle with an object`);
+	assert.doesNotThrow(() => toStyle({}), `can call toStyle with an object`);
 
 	assert.end();
 });

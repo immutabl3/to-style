@@ -20,7 +20,6 @@
 // transform: rotateX(10deg);
 // transform: rotateY(10deg);
 // transform: rotateZ(10deg);
-// transform: perspective(17px);
 
 import Precision from '../Precision';
 import ToUnit from '../ToUnit';
@@ -29,10 +28,13 @@ import toRadians from '../../utils/toRadians';
 import toProperty from './toProperty';
 import end from './end';
 import toMatrix from './toMatrix';
+import array from './array';
+import object from './object';
 
 export default function Transform(precision, units, accelerate) {
 	const matrixTransform = function(definition) {
-		const values = {};
+		// using an object pool for this as well, gotta keep it stable
+		const values = object();
 
 		if (definition.rotate !== undefined) {
 			values.rotateX = values.rotateY = values.rotateZ = definition.rotate;
@@ -75,7 +77,10 @@ export default function Transform(precision, units, accelerate) {
 				(values.z = definition.translateZ) :
 				undefined;
 
-		return toMatrix(values);
+		const matrix = toMatrix(values);
+		// freeing the object
+		object(values);
+		return matrix;
 	};
 
 	const formatRotate = flow([Precision(precision.rotate), ToUnit(units.rotate), toProperty('rotate')]);
@@ -97,7 +102,7 @@ export default function Transform(precision, units, accelerate) {
 	const formatZ = flow([Precision(precision.z), ToUnit(units.z), toProperty('translateZ')]);
 
 	const verboseTransform = function(definition) {
-		const values = [];
+		const values = array();
 
 		if (definition.rotate !== undefined) {
 			values.push(formatRotate(definition.rotate));
@@ -126,7 +131,9 @@ export default function Transform(precision, units, accelerate) {
 		definition.y !== undefined ? values.push(formatY(definition.y)) : definition.translateY !== undefined && values.push(formatY(definition.translateY));
 		definition.z !== undefined ? values.push(formatZ(definition.z)) : definition.translateZ !== undefined && values.push(formatZ(definition.translateZ));
 
-		return end(values);
+		const result = end(values);
+		values.free();
+		return result;
 	};
 
 	return function tranform(definition) {

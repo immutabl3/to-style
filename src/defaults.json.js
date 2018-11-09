@@ -11,7 +11,6 @@ const TRANSFORM_PRECISION = 3;
 
 export default {
 	transform3d: true,
-	transformSize: true,
 	blacklist: ['x', 'y'],
 	format: {
 		opacity: true,

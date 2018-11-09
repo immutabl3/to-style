@@ -1,6 +1,6 @@
 # to-style
 
-`to-style` is an object formatter for stlye objects that works in both node and the browser
+`to-style` is an small (`9.75KB` minified, `3.37KB` gzipped) object formatter for style objects for node and the browser
 
 # Installation
 
@@ -8,9 +8,125 @@
 
 # Usage
 
-# Config
+General usage: 
+
+```js
+import toStyle from '@immutabl3/to-style';
+const result = toStyle({
+  x: 1,
+  opacity: 0.0019,
+  margin: 1,
+  padding: '1rem',
+  notValidCssProp: 1,
+});
+
+console.log(result.x);
+// automatically generates 3d transforms 
+// > matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,1,0,0,1)
+console.log(result.opacity);
+// reduces precision
+// > 0.002
+console.log(result.margin);
+// turns numbers into unit values
+// > '1px'
+console.log(result.padding);
+// to-style won't alter strings
+// > '1rem'
+console.log(result.notValidCssProp);
+// wont apply non-css properties to the result
+// > undefined
+```
+
+With React:
+
+```jsx
+import React from 'react';
+import toStyle from '@immutabl3/to-style';
+
+const Container = function(props) {
+  return (
+    // because toStyle removes invalid css properties,
+    // we can store styles (e.g. opacity) flat on the
+    // props object and pass it directly to "style"
+    <div style={ toStyle(props) }>
+      { props.children }
+    </div>
+  );
+};
+```
+
+`to-style` is made to be used with [animations and tweens](https://github.com/tweenjs/tween.js/). 
+Passing an object as a second value will use that object as the result.
+
+```js
+const coords = { x: 0, y: 0 };
+const style = {};
+const tween = new TWEEN.Tween(coords)
+	.to({ x: 300, y: 200 }, 1000)
+	.onUpdate(function() {
+		const styled = toStyle(coords, style);
+		console.log(style === style);
+		// > true
+		// do what you'd like with the style.transform 
+	})
+	.start();
+```
+
+`to-style` believes in staying out of your way, not doing too much and having smart defaults. 
+Create your own custom styler by overriding the defaults (see options below):
+
+```js
+import toStyle from '@immutabl3/to-style';
+
+const myStyler = toStyle.create({ transform3d: false });
+const result = toStyle({
+  x: 1,
+});
+
+console.log(result.x);
+// > translateX(1px)
+```
+
+# Options
+
+#### *`transform3d`* _default: *true*_
+
+If any transformation properties are defined, they will be converted to a 3d matrix: `x`, `y`, 
+`z`, `translateX`, `translateY`, `translateZ`, `scale`, `scaleX`, `scaleY`, `scaleZ`, `rotate`, 
+`rotateX`, `rotateY`, `rotateZ`, `skew`, `skewX`, `skewY`.
+
+Disabling this feature generates more verbose 2d code e.g. `x` => `translateX(1px)`
+
+#### *`blacklist`* _default: *['x', 'y']*_
+
+An array of keys to blacklist from applying to the style object. By default, `x` and `y` are valid
+values in a [CSSStyleDeclaration](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration) 
+but are being used as shorthand transformation properties.
+
+#### *`format`* _type: *{}*_
+
+An object defining which formats will be applied. By default, the following keys will be formatted: 
+`opacity`, `top`, `right`, `bottom`, `left`, `width`, `height`, `perspective`, `willChange`, `margin`, 
+`padding`, `size`.
+
+#### *`units`* _type: *{}*_
+
+An object defining the units for formatted properties.
+
+#### *`precision`* _type: *{}*_
+
+An object defining the percision for formatted properties when defined as numbers.
 
 # Tests
+
+Clone the repo, then:
+
+1. `npm install`
+1. `npm test`
+
+A benchmark can also be run:
+
+`npm run benchmark`
 
 # Notes
 
