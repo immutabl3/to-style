@@ -1,7 +1,7 @@
 {
   "name": "@immutabl3/to-style",
   "version": "1.0.0",
-  "description": "a blazingly fast, zero deps, purely mathematical way to generate a valid CSSStyleDeclaration for React",
+  "description": "a fast, zero deps, purely mathematical way to generate a valid CSSStyleDeclaration",
   "main": "./src/index.js",
   "browser": "./src/browser.js",
   "scripts": {

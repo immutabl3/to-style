@@ -1,6 +1,6 @@
 # to-style
 
-`to-style` is an small (`9.75KB` minified, `3.37KB` gzipped) object formatter for style objects for node and the browser
+`to-style` is an small (`9.75KB` minified, `3.37KB` gzipped) object formatter for style objects for node, the browser and react.
 
 # Installation
 
@@ -134,7 +134,7 @@ As a design decision, this library optimizes for runtime speed in exchange for
 setup cost and greater (but stable) memory consumption. All functions to format 
 the passed object are precomposed. This generally isn't a big tradeoff as runtime 
 speed and preventing large garbage collections are more impactful when dealing with 
-animation (e.g. tweening) and re-draw (react).
+animation (e.g. tweening) and re-draws (react).
 
 # License
 
