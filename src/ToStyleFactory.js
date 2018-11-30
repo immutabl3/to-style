@@ -5,6 +5,7 @@ import ToUnit from './Deducers/ToUnit';
 import Size from './Deducers/Size';
 import FormatBox from './Deducers/FormatBox';
 import willChange from './Deducers/willChange';
+import applyPrecision from './Deducers/applyPrecision';
 import applyUnit from './Deducers/applyUnit';
 import defaults from './defaults.json';
 import isString from './utils/isString';
@@ -78,8 +79,10 @@ export default function ToStyleFactory(cssStyleDeclaration) {
 					continue;
 				}
 
+				// if a precision is defined for a value
+				if (precision[key] !== undefined) value = applyPrecision(value, precision[key]);
 				// if a unit is defined for a value
-				if (units[key]) value = applyUnit(value, units[key]);
+				if (units[key] !== undefined) value = applyUnit(value, units[key]);
 
 				// passthrough
 				style[key] = value;
