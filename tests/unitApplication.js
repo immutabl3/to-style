@@ -1,7 +1,7 @@
 import test from 'tape';
 import toStyle from '../src';
 
-test('transformation: default', assert => {
+test('unit application', assert => {
 	const ts = toStyle.create({ units: { fontSize: '%' } });
 
 	let result = ts({ fontSize: 12 });
