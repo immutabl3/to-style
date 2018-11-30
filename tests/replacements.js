@@ -44,10 +44,10 @@ test('replacement: px values', assert => {
 		assert.is(result[key], '1px', `${key}: number turns into pixel value`);
 		
 		result = toStyle({ [key]: 1.111 });
-		assert.is(result[key], '1.1px', `${key}: pixel values are truncated`);
+		assert.is(result[key], '1.11px', `${key}: pixel values are truncated`);
 		
-		result = toStyle({ [key]: 1.89 });
-		assert.is(result[key], '1.9px', `${key}: pixel values are rouned`);
+		result = toStyle({ [key]: 1.891 });
+		assert.is(result[key], '1.89px', `${key}: pixel values are rouned`);
 		
 		result = toStyle({ [key]: 0 });
 		assert.is(result[key], '0', `${key}: zero is unitless`);

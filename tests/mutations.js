@@ -18,7 +18,7 @@ test('mutation: margin/padding', assert => {
 		assert.is(result[key], '987654321px', `${key}: large values are allowed`);
 
 		result = toStyle({ [key]: 1.8777 });
-		assert.is(result[key], '1.9px', `${key}: values are rounded`);
+		assert.is(result[key], '1.88px', `${key}: values are rounded`);
 
 		result = toStyle({ [key]: [1, 2, 3, 4] });
 		assert.is(result[key], '1px 2px 3px 4px', `${key}: full array is turned into a series of values`);
