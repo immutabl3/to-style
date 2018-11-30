@@ -54,6 +54,8 @@ export default {
 		skewY: DEG,
 
 		perspective: PX,
+		
+		fontSize: PX,
 	},
 	precision: {
 		opacity: TRANSFORM_PRECISION,
