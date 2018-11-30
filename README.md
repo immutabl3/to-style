@@ -133,7 +133,7 @@ A benchmark can also be run:
 As a design decision, this library optimizes for runtime speed in exchange for 
 setup cost and greater (but stable) memory consumption. All functions to format 
 the passed object are precomposed. This generally isn't a big tradeoff as runtime 
-speed and preventing large garbage collections are more impactful when dealing with 
+speed and preventing large garbage collections are more important when dealing with 
 animation (e.g. tweening) and re-draws (react).
 
 # License
