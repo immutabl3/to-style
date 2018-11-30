@@ -5,4 +5,5 @@ import './blacklisting';
 import './replacements';
 import './mutations';
 import './transformations';
+import './unitApplication';
 import './pooling';

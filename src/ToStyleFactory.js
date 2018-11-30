@@ -5,6 +5,7 @@ import ToUnit from './Deducers/ToUnit';
 import Size from './Deducers/Size';
 import FormatBox from './Deducers/FormatBox';
 import willChange from './Deducers/willChange';
+import applyUnit from './Deducers/applyUnit';
 import defaults from './defaults.json';
 import isString from './utils/isString';
 import flow from './utils/flow';
@@ -20,7 +21,7 @@ export default function ToStyleFactory(cssStyleDeclaration) {
 		const units = Object.assign({}, defaults.units, config.units || {});
 		const precision = Object.assign({}, defaults.precision, config.precision || {});
 		const format = Object.assign({}, defaults.format, config.format || {});
-		
+
 		const transform = Transform(precision, units, transform3d);
 		
 		const replacementMap = new Map([
@@ -47,6 +48,8 @@ export default function ToStyleFactory(cssStyleDeclaration) {
 			if (!definition) throw new Error('to-style: an object is required');
 
 			for (const key in definition) {
+				let value = definition[key];
+
 				// if the key has been blacklisted
 				if (blacklistedKeys.has(key)) continue;
 
@@ -55,22 +58,31 @@ export default function ToStyleFactory(cssStyleDeclaration) {
 				
 				// the key exists, but the value does not...skip
 				if (definition[key] === undefined) continue;
+				
+				// the key has been told NOT to format...pass through
+				if (format[key] === false) {
+					style[key] = value;
+					continue;
+				}
 
 				// functions that replace the value
 				if (replacementMap.has(key)) {
-					const value = replacementMap.get(key)(definition[key]);
-					if (value !== undefined) style[key] = value;
+					const replacementValue = replacementMap.get(key)(value);
+					if (replacementValue !== undefined) style[key] = replacementValue;
 					continue;
 				}
 
 				// functions that mutate the style object
 				if (mutationMap.has(key)) {
-					mutationMap.get(key)(style, definition[key]);
+					mutationMap.get(key)(style, value);
 					continue;
 				}
 
+				// if a unit is defined for a value
+				if (units[key]) value = applyUnit(value, units[key]);
+
 				// passthrough
-				style[key] = definition[key];
+				style[key] = value;
 			}
 			
 			// transformation is special...if it hasn't been
