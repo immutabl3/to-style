@@ -1,13 +1,14 @@
 {
-	"presets": [
-	  "@babel/preset-react",
-		["@babel/preset-env", {
-		  "targets": "last 2 versions, not dead, ie 11"
+  "presets": [
+  	["@babel/preset-env", {
+		"targets": {
+			"browsers": ["last 2 versions"]
+		}
+  	}]
+  ],
+	"plugins": [
+		["@babel/plugin-transform-runtime", {
+			"useESModules": true
 		}]
-	],
-	  "plugins": [
-		  ["@babel/plugin-transform-runtime", {
-			  "useESModules": true
-		  }]
-	  ]
-  }
+	]
+}
