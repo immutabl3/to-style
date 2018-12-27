@@ -1,6 +1,6 @@
 # to-style
 
-`to-style` is an small (`9.75KB` minified, `3.37KB` gzipped), fast object formatter for style objects for node, the browser and react.
+`to-style` is a small (`9.75KB` minified, `3.37KB` gzipped), fast object formatter for style objects for node, the browser and react.
 
 # Installation
 
