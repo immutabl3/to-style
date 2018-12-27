@@ -2,11 +2,11 @@
 
 `to-style` is a small (`9.75KB` minified, `3.37KB` gzipped), fast object formatter for style objects for node, the browser and react.
 
-# Installation
+## Installation
 
 `$ npm i @immutabl3/to-style`
 
-# Usage
+## Usage
 
 General usage: 
 
@@ -39,7 +39,7 @@ console.log(result.notValidCssProp);
 
 With React:
 
-```jsx
+```js
 import React from 'react';
 import toStyle from '@immutabl3/to-style';
 
@@ -87,7 +87,7 @@ console.log(result.x);
 // > translateX(1px)
 ```
 
-# Options
+## Options
 
 #### *`transform3d`* _default: *true*_
 
@@ -117,7 +117,7 @@ An object defining the units for formatted properties.
 
 An object defining the percision for formatted properties when defined as numbers.
 
-# Tests
+## Tests
 
 Clone the repo, then:
 
@@ -128,7 +128,7 @@ A benchmark can also be run:
 
 `npm run benchmark`
 
-# Notes
+## Notes
 
 As a design decision, this library optimizes for runtime speed in exchange for 
 setup cost and greater (but stable) memory consumption. All functions to format 
@@ -136,7 +136,7 @@ the passed object are precomposed. This generally isn't a big tradeoff as runtim
 speed and preventing large garbage collections are more important when dealing with 
 animation (e.g. tweening) and re-draws (react).
 
-# License
+## License
 
 The MIT License (MIT)
 
