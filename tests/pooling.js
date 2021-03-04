@@ -2,7 +2,7 @@ import test from 'tape';
 import toStyle from '../src';
 import array from '../src/Deducers/Transform/array';
 import object from '../src/Deducers/Transform/object';
-import { range } from 'lodash-es';
+import range from 'lodash/range';
 
 test('pooling: array', assert => {
 	assert.is(Array.prototype.free, undefined, `haven't polluted array prototype`);

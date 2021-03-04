@@ -41,8 +41,8 @@ Copyright (c) ${year} ${author.name} License: ${license}
 			},
 		}),
 		new CompressionPlugin({
-			filename({ path, query }) {
-				return `${path}.gz${query}`;
+			filename({ file, query }) {
+				return `${file}.gz${query}`;
 			},
 		})
 	]

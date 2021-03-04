@@ -1,6 +1,7 @@
 import test from 'tape';
 import toStyle from '../src';
-import { isPlainObject, isFunction } from 'lodash-es';
+import isPlainObject from 'lodash/isPlainObject';
+import isFunction from 'lodash/isFunction';
 
 test('function & creation', assert => {
 	assert.ok(isFunction(toStyle));
