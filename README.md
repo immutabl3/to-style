@@ -128,6 +128,16 @@ A benchmark can also be run:
 
 `npm run benchmark`
 
+Current benchmark
+```
+basic x 752,929 ops/sec ±0.86% (90 runs sampled)
+matrix x 550,798 ops/sec ±0.82% (91 runs sampled)
+no-side-effects x 332,298 ops/sec ±5.81% (86 runs sampled)
+side-effects x 729,439 ops/sec ±0.51% (92 runs sampled)
+no-side-effects#large x 120,957 ops/sec ±0.64% (91 runs sampled)
+side-effects#large x 240,126 ops/sec ±2.07% (85 runs sampled)
+```
+
 ## Notes
 
 As a design decision, this library optimizes for runtime speed in exchange for 
