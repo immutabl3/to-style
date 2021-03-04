@@ -7,7 +7,7 @@
   "scripts": {
     "test": "node -r esm tests",
     "debug": "node -r esm --inspect-brk tests",
-    "benchmark": "node -r esm benchmark",
+    "bench": "node -r esm benchmark",
     "build": "webpack"
   },
   "repository": {
