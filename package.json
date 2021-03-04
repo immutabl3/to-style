@@ -14,10 +14,6 @@
     "type": "git",
     "url": "git+https://github.com/immutabl3/to-style.git"
   },
-  "engines": {
-    "node": "11.1.0",
-    "npm": "6.4.1"
-  },
   "keywords": [
     "style",
     "css",
