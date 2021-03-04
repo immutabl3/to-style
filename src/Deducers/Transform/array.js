@@ -13,7 +13,6 @@ const create = function() {
 
 const array = function() {
 	if (pool.length) return pool.pop();
-	
 	return create();
 };
 
