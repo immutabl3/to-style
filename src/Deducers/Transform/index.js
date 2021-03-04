@@ -39,9 +39,9 @@ export default function Transform(precision, units, accelerate) {
 		if (definition.rotate !== undefined) {
 			values.rotateX = values.rotateY = values.rotateZ = definition.rotate;
 		} else {
-			definition.rotateX !== undefined && (values.rotateX = toRadians(definition.rotateX));
-			definition.rotateY !== undefined && (values.rotateY = toRadians(definition.rotateY));
-			definition.rotateZ !== undefined && (values.rotateZ = toRadians(definition.rotateZ));
+			definition.rotateX !== undefined && (values.rotateX = definition.rotateX);
+			definition.rotateY !== undefined && (values.rotateY = definition.rotateY);
+			definition.rotateZ !== undefined && (values.rotateZ = definition.rotateZ);
 		}
 
 		if (definition.skew !== undefined) {
