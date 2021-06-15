@@ -22,9 +22,19 @@ export default function toMatrix({
 	scaleZ,
 }) {
 	const matricies = array();
-	matricies[0] = (x || y || z) ? translate(x || 0, y || 0, z || 0) : undefined;
-	matricies[1] = (skewX || skewY) ? skew(skewX || 0, skewY || 0) : undefined;
-	matricies[2] = (scaleX !== 1 || scaleY !== 1 || scaleZ !== 1) ? scale(scaleX || 1, scaleY || 1, scaleZ || 1) : undefined;
+	matricies[0] = x || y || z
+		? translate(x || 0, y || 0, z || 0)
+		: undefined;
+	matricies[1] = skewX || skewY
+		? skew(skewX || 0, skewY || 0) 
+		: undefined;
+	matricies[2] = scaleX !== 1 || scaleY !== 1 || scaleZ !== 1
+		? scale(
+			scaleX === undefined ? 1 : scaleX,
+			scaleY === undefined ? 1 : scaleY,
+			scaleZ === undefined ? 1 : scaleZ,
+		)
+		: undefined;
 	matricies[3] = rotateX !== undefined ? matrixRotateX(rotateX) : undefined;
 	matricies[4] = rotateY !== undefined ? matrixRotateY(rotateY) : undefined;
 	matricies[5] = rotateZ !== undefined ? matrixRotateZ(rotateZ) : undefined;

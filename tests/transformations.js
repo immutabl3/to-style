@@ -65,3 +65,17 @@ test('transformation: verbose', assert => {
 
 	assert.end();
 });
+
+test('transformation: zero-sum matrix scale', assert => {
+	[
+		['scale', 'matrix3d(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1)'],
+		['scaleX', 'matrix3d(0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1)'],
+		['scaleY', 'matrix3d(1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1)'],
+		['scaleZ', 'matrix3d(1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1)'],
+	].forEach(([key, desiredResult]) => {
+		const result = toStyle({ [key]: 0 });
+		assert.is(result.transform, desiredResult);
+	});
+
+	assert.end();
+});
