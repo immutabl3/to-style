@@ -1,4 +1,4 @@
-import isString from '../utils/isString';
+import { isString } from '@immutabl3/utils';
 
 export default function ToUnit(unit) {
 	return function toUnit(num) {

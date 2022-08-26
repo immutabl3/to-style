@@ -1,5 +1,4 @@
-import isNumber from '../utils/isNumber';
-import isString from '../utils/isString';
+import { isString, isNumber } from '@immutabl3/utils';
 
 export default function applyUnit(value, unit) {
 	// already has a unit (as it doesn't convert)

@@ -20,16 +20,16 @@
 // transform: rotateX(10deg);
 // transform: rotateY(10deg);
 // transform: rotateZ(10deg);
+import { degreesToRadians } from '@immutabl3/utils';
 
-import Precision from '../Precision';
-import ToUnit from '../ToUnit';
-import flow from '../../utils/flow';
-import toRadians from '../../utils/toRadians';
-import toProperty from './toProperty';
-import end from './end';
-import toMatrix from './toMatrix';
-import array from './array';
-import object from './object';
+import Precision from '../Precision.js';
+import ToUnit from '../ToUnit.js';
+import flow from '../../utils/flow.js';
+import toProperty from './toProperty.js';
+import end from './end.js';
+import toMatrix from './toMatrix.js';
+import array from './array.js';
+import object from './object.js';
 
 export default function Transform(precision, units, accelerate) {
 	const matrixTransform = function(definition) {
@@ -47,8 +47,8 @@ export default function Transform(precision, units, accelerate) {
 		if (definition.skew !== undefined) {
 			values.skewX = values.skewY = definition.skew;
 		} else {
-			definition.skewX !== undefined && (values.skewX = toRadians(definition.skewX));
-			definition.skewY !== undefined && (values.skewY = toRadians(definition.skewY));
+			definition.skewX !== undefined && (values.skewX = degreesToRadians(definition.skewX));
+			definition.skewY !== undefined && (values.skewY = degreesToRadians(definition.skewY));
 		}
 
 		if (definition.scale !== undefined) {

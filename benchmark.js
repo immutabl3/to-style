@@ -1,5 +1,5 @@
 import Benchmark from 'benchmark';
-import toStyle from '../src';
+import toStyle from './src/index.js';
 
 const suite = new Benchmark.Suite();
 const sideEffectsObj = {};

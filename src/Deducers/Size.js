@@ -1,6 +1,6 @@
-import Precision from './Precision';
-import ToUnit from './ToUnit';
-import flow from '../utils/flow';
+import Precision from './Precision.js';
+import ToUnit from './ToUnit.js';
+import flow from '../utils/flow.js';
 
 export default function Size(precision, unit) {
 	const format = flow([Precision(precision), ToUnit(unit)]);

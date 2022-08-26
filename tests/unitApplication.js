@@ -1,5 +1,5 @@
 import test from 'tape';
-import toStyle from '../src';
+import toStyle from '../src/index.js';
 
 test('unit application', assert => {
 	const ts = toStyle.create({ units: { fontSize: '%' } });

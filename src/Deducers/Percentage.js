@@ -1,5 +1,5 @@
-import pre from '../utils/precision';
-import isString from '../utils/isString';
+import { isString } from '@immutabl3/utils';
+import pre from '../utils/precision.js';
 
 export default function Percentage(precision) {
 	return function percentage(value) {

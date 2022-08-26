@@ -1,5 +1,5 @@
-import isNumber from '../utils/isNumber';
-import pre from '../utils/precision';
+import { isNumber } from '@immutabl3/utils';
+import pre from '../utils/precision.js';
 
 // NOTE: this is much like Precision.js, but for values that
 // aren't streamlined

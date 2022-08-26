@@ -1,8 +1,7 @@
-import Precision from './Precision';
-import ToUnit from './ToUnit';
-import flow from '../utils/flow';
-import isString from '../utils/isString';
-import isNumber from '../utils/isNumber';
+import { isString, isNumber } from '@immutabl3/utils';
+import Precision from './Precision.js';
+import ToUnit from './ToUnit.js';
+import flow from '../utils/flow.js';
 
 export default function FormatBox(key, precision, unit) {
 	const format = flow([

@@ -1,5 +1,6 @@
 // https://stackoverflow.com/questions/9553354/how-do-i-get-the-decimal-places-of-a-floating-point-number-in-javascript
 export default function precision(num) {
+	if (!Number.isFinite(num)) return 0;
 	let exp = 1;
 	let count = 0;
 	while (Math.round(num * exp) / exp !== num) {

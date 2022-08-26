@@ -1,5 +1,5 @@
-import array from './array';
-import toRadians from '../../utils/toRadians';
+import { degreesToRadians } from '@immutabl3/utils';
+import mat from './mat.js';
 
 // matrix transformations can be heavy beasts.
 // in our case, we're optimizing for the composition
@@ -24,7 +24,7 @@ const { cos, sin, tan } = Math;
 const blankMatrix = () => {
 	// original code:
 	// [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
-	const matrix = array();
+	const matrix = mat();
 	matrix[0] = 1;
 	matrix[1] = 0;
 	matrix[2] = 0;
@@ -52,8 +52,8 @@ export const rotateX = function(deg) {
 	// 	0,  sin(x),   cos(x),     0,
 	// 	0,       0,        0,     1,
 	// ];
-	const matrix = array();
-	const x = toRadians(deg);
+	const matrix = mat();
+	const x = degreesToRadians(deg);
 	matrix[0] = 1;
 	matrix[1] = 0;
 	matrix[2] = 0;
@@ -74,8 +74,8 @@ export const rotateX = function(deg) {
 };
 
 export const rotateY = function(deg) {
-	const matrix = array();
-	const x = toRadians(deg);
+	const matrix = mat();
+	const x = degreesToRadians(deg);
 	// original code:
 	// return [
 	// 	 cos(x),   0, sin(x),   0,
@@ -103,8 +103,8 @@ export const rotateY = function(deg) {
 };
 
 export const rotateZ = function(deg) {
-	const matrix = array();
-	const x = toRadians(deg);
+	const matrix = mat();
+	const x = degreesToRadians(deg);
 	// original code:
 	// return [
 	// 	cos(x), -sin(x),    0,    0,
@@ -132,7 +132,7 @@ export const rotateZ = function(deg) {
 };
 
 export const translate = function(x, y, z) {
-	const matrix = array();
+	const matrix = mat();
 	// original code:
 	// return [
 	// 	1,    0,    0,   0,
@@ -160,7 +160,7 @@ export const translate = function(x, y, z) {
 };
 
 export const scale = function(x, y, z) {
-	const matrix = array();
+	const matrix = mat();
 	// original code:
 	// return [
 	//     x,    0,    0,   0,
@@ -188,9 +188,9 @@ export const scale = function(x, y, z) {
 };
 
 export const skew = function(x, y) {
-	const matrix = array();
-	const a1 = toRadians(x);
-	const a2 = toRadians(y);
+	const matrix = mat();
+	const a1 = degreesToRadians(x);
+	const a2 = degreesToRadians(y);
 	// original code:
 	// return [
 	//     1,       tan(a2),    0,   0,
@@ -218,16 +218,16 @@ export const skew = function(x, y) {
 };
 
 const multiply = function(a, b) { // eslint-disable-line
-	const result = array();
+	const result = mat();
 	
 	// currently taken from https://github.com/toji/gl-matrix/blob/master/src/gl-matrix/mat4.js#L306-L337
-	var a00 = a[0],  a01 = a[1],  a02 = a[2],  a03 = a[3], // eslint-disable-line
+	const a00 = a[0],  a01 = a[1],  a02 = a[2],  a03 = a[3], // eslint-disable-line
 		a10 = a[4],  a11 = a[5],  a12 = a[6],  a13 = a[7], // eslint-disable-line
 		a20 = a[8],  a21 = a[9],  a22 = a[10], a23 = a[11], // eslint-disable-line
 		a30 = a[12], a31 = a[13], a32 = a[14], a33 = a[15]; // eslint-disable-line
 
 	// Cache only the current line of the second matrix
-	var b0 = b[0], b1 = b[1], b2 = b[2], b3 = b[3]; // eslint-disable-line
+	let b0 = b[0], b1 = b[1], b2 = b[2], b3 = b[3]; // eslint-disable-line
 	result[0] = b0 * a00 + b1 * a10 + b2 * a20 + b3 * a30;
 	result[1] = b0 * a01 + b1 * a11 + b2 * a21 + b3 * a31;
 	result[2] = b0 * a02 + b1 * a12 + b2 * a22 + b3 * a32;
@@ -266,9 +266,7 @@ export default function compose(matrices) {
 	if (!length) return result;
 
 	for (let idx = 0; idx < length; idx++) {
-		if (matrices[idx]) {
-			result = multiply(result, matrices[idx]);
-		}
+		result = multiply(result, matrices[idx]);
 	}
 
 	return result;

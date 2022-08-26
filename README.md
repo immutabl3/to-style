@@ -130,12 +130,12 @@ A benchmark can also be run:
 
 Current benchmark
 ```
-basic x 752,929 ops/sec ±0.86% (90 runs sampled)
-matrix x 550,798 ops/sec ±0.82% (91 runs sampled)
-no-side-effects x 332,298 ops/sec ±5.81% (86 runs sampled)
-side-effects x 729,439 ops/sec ±0.51% (92 runs sampled)
-no-side-effects#large x 120,957 ops/sec ±0.64% (91 runs sampled)
-side-effects#large x 240,126 ops/sec ±2.07% (85 runs sampled)
+basic x 2,677,036 ops/sec ±0.15% (98 runs sampled)
+matrix x 2,436,562 ops/sec ±0.48% (98 runs sampled)
+no-side-effects x 1,087,356 ops/sec ±0.37% (99 runs sampled)
+side-effects x 1,873,759 ops/sec ±0.33% (101 runs sampled)
+no-side-effects#large x 364,810 ops/sec ±0.23% (98 runs sampled)
+side-effects#large x 573,287 ops/sec ±0.09% (102 runs sampled)
 ```
 
 ## Notes

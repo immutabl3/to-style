@@ -1,5 +1,5 @@
 import test from 'tape';
-import toStyle from '../src';
+import toStyle from '../src/index.js';
 
 test('value inclusion', assert => {
 	assert.is(toStyle({ src: 'foo' }).src, 'foo', `css key src is included`);

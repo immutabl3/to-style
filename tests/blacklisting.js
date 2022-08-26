@@ -1,5 +1,5 @@
 import test from 'tape';
-import toStyle from '../src';
+import toStyle from '../src/index.js';
 
 test('blacklist: default', assert => {
 	assert.is(toString({ x: 1 }).hasOwnProperty('x'), false, `"x" is blacklisted by default`);

@@ -1,27 +1,27 @@
-import Transform from './Deducers/Transform';
-import Percentage from './Deducers/Percentage';
-import Precision from './Deducers/Precision';
-import ToUnit from './Deducers/ToUnit';
-import Size from './Deducers/Size';
-import FormatBox from './Deducers/FormatBox';
-import willChange from './Deducers/willChange';
-import applyPrecision from './Deducers/applyPrecision';
-import applyUnit from './Deducers/applyUnit';
-import defaults from './defaults.json';
-import isString from './utils/isString';
-import flow from './utils/flow';
+import { isString } from '@immutabl3/utils';
+import Transform from './Deducers/Transform/index.js';
+import Percentage from './Deducers/Percentage.js';
+import Precision from './Deducers/Precision.js';
+import ToUnit from './Deducers/ToUnit.js';
+import Size from './Deducers/Size.js';
+import FormatBox from './Deducers/FormatBox.js';
+import willChange from './Deducers/willChange.js';
+import applyPrecision from './Deducers/applyPrecision.js';
+import applyUnit from './Deducers/applyUnit.js';
+import defaults from './defaults.js';
+import flow from './utils/flow.js';
 
-// TODO: variableize key strings
+const emptyObject = {};
 
 export default function ToStyleFactory(cssStyleDeclaration) {
-	return function ToStyle(config = {}) {
+	return function ToStyle(config = emptyObject) {
 		const {
 			blacklist,
 			transform3d,
 		} = Object.assign({}, defaults, config);
-		const units = Object.assign({}, defaults.units, config.units || {});
-		const precision = Object.assign({}, defaults.precision, config.precision || {});
-		const format = Object.assign({}, defaults.format, config.format || {});
+		const units = Object.assign({}, defaults.units, config.units || emptyObject);
+		const precision = Object.assign({}, defaults.precision, config.precision || emptyObject);
+		const format = Object.assign({}, defaults.format, config.format || emptyObject);
 
 		const transform = Transform(precision, units, transform3d);
 		

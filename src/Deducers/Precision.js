@@ -1,5 +1,5 @@
-import isNumber from '../utils/isNumber';
-import pre from '../utils/precision';
+import { isNumber } from '@immutabl3/utils';
+import pre from '../utils/precision.js';
 
 export default function Precision(num) {
 	const round = num === 0 ? 
